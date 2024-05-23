@@ -101,4 +101,4 @@ class Controller:
         new_gen = Models.Generation(account)
         Models.Account.upsert(self.database.session, account)
 
-        return now[0:3] + " " + now[3:]
+        return now

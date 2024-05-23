@@ -64,6 +64,7 @@ class TableArea(ttk.Frame):
 
         account = self.controller.get_account(account_id)
         totp_code = self.controller.intent_generate_totp(account_id)
+        totp_code = totp_code[0:3] + " " + totp_code[3:]
         self.counters[account_id] = 30
         
         def counter_callback():
