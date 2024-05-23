@@ -13,13 +13,23 @@ class TableArea(ttk.Frame):
 
         self.counters = {}
 
-        self.canvas_area = ttk.Frame(self, width=500, height=400)
-        self.canvas_area.pack()
+        #self.canvas_area = ttk.Frame(self, width=500, height=400)
+        self.pack()
         self.table()
 
     def table(self):
-        self.tree = ttk.Treeview(self.canvas_area, height=10, columns=(1, 2))
-        self.tree.grid(row=5, column=0, columnspan=3)
+        self.tree = ttk.Treeview(self, height=10, columns=(1, 2))
+
+        self.scroll = ttk.Scrollbar(self, orient ="vertical", command = self.tree.yview)
+
+        self.tree.configure(yscrollcommand = self.scroll.set)
+
+        self.tree.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        self.scroll.grid(row=0, column=1, sticky="nse")
+        self.scroll.configure(command=self.tree.yview)
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+
         self.tree.heading("#0", text="Site", anchor=WEST)
         self.tree.heading("#1", text="Username", anchor=WEST)
         self.tree.heading("#2", text="Code", anchor=WEST)

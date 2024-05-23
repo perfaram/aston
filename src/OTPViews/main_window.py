@@ -16,6 +16,7 @@ class MainWindow:
         self.root = tk.Tk()
         self.root.title(config.app_details["name"] + " v" + config.app_details["version"])
         self.root.geometry("") # autosize
+        self.root.minsize(600,200)
         self.root.option_add('*tearOff', False)
         
         # barre de menus
